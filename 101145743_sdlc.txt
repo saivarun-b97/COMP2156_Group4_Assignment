@@ -1,0 +1,20 @@
+IMPORTANCE OF DevOps IN THE SOFTWARE DEVELOPMENT lifecycle
+_____________________________________________________________
+_____________________________________________________________
+
+- It plays crucial role in the software Develeopment lifecycle by collabrating between development and operations teams.  
+- Learning automation tools reduce human error in manual processes, saving time and resources for innovation. 
+- It helps deliver software faster by reducing delays and deplyment errors. 
+
+DevOps LIFECYCLE
+_____________________________________________________________
+_____________________________________________________________
+
+- Plan
+- Code
+- Build
+- Test
+- Release
+- Deployment
+- Operate
+- Monitor

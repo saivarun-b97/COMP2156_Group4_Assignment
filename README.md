@@ -14,7 +14,7 @@
 |------------|------|-----------------|-------------|
 | 101203923 | Saivarun Bandari | @saivarun-b97 | 101203923-Saivarun |
 | 101318862 | Brian Nguyen | @Faded999x | 101318862-Brian |
-| [Your ID] | [Your Name] | @[username] | [Your Branch] |
+| 101145743 | Harsimran Kaur | @Simran-8 | 101145743-Harsimran |
 | [Your ID] | [Your Name] | @[username] | [Your Branch] |
 | [Your ID] | [Your Name] | @[username] | [Your Branch] |
 | [Your ID] | [Your Name] | @[username] | [Your Branch] |
