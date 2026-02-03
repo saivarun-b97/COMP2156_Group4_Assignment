@@ -26,7 +26,7 @@
 
 # | 101203923 | Saivarun Bandari | @saivarun-b97 | 101203923-Saivarun |
 
-# | \[Your ID] | \[Your Name] | @\[username] | \[Your Branch] |
+# | 101318862 | Brian Nguyen | @Faded999x | 101318862-Brian |
 
 # | \[Your ID] | \[Your Name] | @\[username] | \[Your Branch] |
 
