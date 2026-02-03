@@ -14,87 +14,82 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    - name: List all files in repository
+    - name: Get changed files
       run: |
-        echo "=== Repository Contents ==="
-        ls -la
-        echo ""
+        BASE_BRANCH="${{ github.base_ref }}"
+        git diff --name-only origin/$BASE_BRANCH...HEAD > changed_files.txt
+        
+        echo "Files in this PR:"
+        cat changed_files.txt
     
-    - name: Check for required text files
+    - name: Check for required files
       run: |
-        echo "=== Checking for Required Files ==="
-        echo "Looking for pattern: *_gb.txt, *_devops.txt, *_sdlc.txt"
-        echo ""
+        echo "=== Checking Required Files ==="
         
-        # Count each type of file
-        GB_COUNT=$(ls *_gb.txt 2>/dev/null | wc -l)
-        DEVOPS_COUNT=$(ls *_devops.txt 2>/dev/null | wc -l)
-        SDLC_COUNT=$(ls *_sdlc.txt 2>/dev/null | wc -l)
+        # Check for the 3 required file types
+        GB_FILE=$(grep "_gb\.txt$" changed_files.txt || echo "")
+        DEVOPS_FILE=$(grep "_devops\.txt$" changed_files.txt || echo "")
+        SDLC_FILE=$(grep "_sdlc\.txt$" changed_files.txt || echo "")
         
-        echo "Found $GB_COUNT George Brown file(s)"
-        echo "Found $DEVOPS_COUNT DevOps file(s)"
-        echo "Found $SDLC_COUNT SDLC file(s)"
-        echo ""
+        ERRORS=0
         
-        # Display found files
-        if [ $GB_COUNT -gt 0 ]; then
-          echo "George Brown files:"
-          ls *_gb.txt
-          echo ""
+        if [ -z "$GB_FILE" ]; then
+          echo "❌ Missing: *_gb.txt file"
+          ERRORS=$((ERRORS + 1))
+        else
+          echo "✅ Found: $GB_FILE"
         fi
         
-        if [ $DEVOPS_COUNT -gt 0 ]; then
-          echo "DevOps files:"
-          ls *_devops.txt
-          echo ""
+        if [ -z "$DEVOPS_FILE" ]; then
+          echo "❌ Missing: *_devops.txt file"
+          ERRORS=$((ERRORS + 1))
+        else
+          echo "✅ Found: $DEVOPS_FILE"
         fi
         
-        if [ $SDLC_COUNT -gt 0 ]; then
-          echo "SDLC files:"
-          ls *_sdlc.txt
-          echo ""
+        if [ -z "$SDLC_FILE" ]; then
+          echo "❌ Missing: *_sdlc.txt file"
+          ERRORS=$((ERRORS + 1))
+        else
+          echo "✅ Found: $SDLC_FILE"
         fi
         
-        # Validation
-        TOTAL_FILES=$((GB_COUNT + DEVOPS_COUNT + SDLC_COUNT))
-        
-        if [ $GB_COUNT -eq 0 ] || [ $DEVOPS_COUNT -eq 0 ] || [ $SDLC_COUNT -eq 0 ]; then
-          echo "❌ ERROR: Missing required file types!"
-          echo "Each team member must have all 3 files:"
-          echo "  - STUDENTID_gb.txt"
-          echo "  - STUDENTID_devops.txt"
-          echo "  - STUDENTID_sdlc.txt"
+        if [ $ERRORS -gt 0 ]; then
+          echo ""
+          echo "ERROR: PR must include all 3 files:"
+          echo "  - *_gb.txt"
+          echo "  - *_devops.txt"
+          echo "  - *_sdlc.txt"
           exit 1
         fi
-        
-        echo "✅ SUCCESS: All required file types are present!"
-        echo "Total files found: $TOTAL_FILES"
     
-    - name: Verify file content (not empty)
+    - name: Check file content
       run: |
-        echo "=== Verifying File Content ==="
-        EMPTY_FILES=0
+        echo "=== Checking File Content ==="
         
-        for file in *_gb.txt *_devops.txt *_sdlc.txt; do
+        GB_FILE=$(grep "_gb\.txt$" changed_files.txt)
+        DEVOPS_FILE=$(grep "_devops\.txt$" changed_files.txt)
+        SDLC_FILE=$(grep "_sdlc\.txt$" changed_files.txt)
+        
+        EMPTY=0
+        
+        for file in "$GB_FILE" "$DEVOPS_FILE" "$SDLC_FILE"; do
           if [ -f "$file" ]; then
             SIZE=$(wc -c < "$file")
             if [ $SIZE -eq 0 ]; then
-              echo "⚠️  WARNING: $file is empty!"
-              EMPTY_FILES=$((EMPTY_FILES + 1))
+              echo "❌ $file is empty"
+              EMPTY=$((EMPTY + 1))
             else
-              echo "✓ $file has content ($SIZE bytes)"
+              echo "✅ $file has content ($SIZE bytes)"
             fi
           fi
         done
         
-        echo ""
-        if [ $EMPTY_FILES -gt 0 ]; then
-          echo "❌ ERROR: $EMPTY_FILES file(s) are empty!"
-          echo "All files must contain content about the required topics."
+        if [ $EMPTY -gt 0 ]; then
+          echo ""
+          echo "ERROR: All files must have content"
           exit 1
         fi
-        
-        echo "✅ All files have content!"
     
     - name: Check README exists
       run: |
