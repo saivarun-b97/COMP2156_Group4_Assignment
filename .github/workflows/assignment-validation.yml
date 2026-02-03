@@ -1,0 +1,121 @@
+name: CI Workflow - Assignment Validation
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-assignment:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ref: ${{ github.event.pull_request.head.sha }}
+    
+    - name: Fetch base branch
+      run: |
+        git fetch origin ${{ github.base_ref }}
+    
+    - name: Get changed files
+      run: |
+        echo "Comparing with base branch: ${{ github.base_ref }}"
+        git diff --name-only origin/${{ github.base_ref }}...${{ github.event.pull_request.head.sha }} > changed_files.txt
+        
+        echo "Files in this PR:"
+        cat changed_files.txt
+    
+    - name: Check for required files
+      run: |
+        echo "=== Checking Required Files ==="
+        
+        # Check for the 3 required file types
+        GB_FILE=$(grep "_gb\.txt$" changed_files.txt || echo "")
+        DEVOPS_FILE=$(grep "_devops\.txt$" changed_files.txt || echo "")
+        SDLC_FILE=$(grep "_sdlc\.txt$" changed_files.txt || echo "")
+        
+        ERRORS=0
+        
+        if [ -z "$GB_FILE" ]; then
+          echo "❌ Missing: *_gb.txt file"
+          ERRORS=$((ERRORS + 1))
+        else
+          echo "✅ Found: $GB_FILE"
+        fi
+        
+        if [ -z "$DEVOPS_FILE" ]; then
+          echo "❌ Missing: *_devops.txt file"
+          ERRORS=$((ERRORS + 1))
+        else
+          echo "✅ Found: $DEVOPS_FILE"
+        fi
+        
+        if [ -z "$SDLC_FILE" ]; then
+          echo "❌ Missing: *_sdlc.txt file"
+          ERRORS=$((ERRORS + 1))
+        else
+          echo "✅ Found: $SDLC_FILE"
+        fi
+        
+        if [ $ERRORS -gt 0 ]; then
+          echo ""
+          echo "ERROR: PR must include all 3 files:"
+          echo "  - *_gb.txt"
+          echo "  - *_devops.txt"
+          echo "  - *_sdlc.txt"
+          exit 1
+        fi
+    
+    - name: Check file content
+      run: |
+        echo "=== Checking File Content ==="
+        
+        GB_FILE=$(grep "_gb\.txt$" changed_files.txt || echo "")
+        DEVOPS_FILE=$(grep "_devops\.txt$" changed_files.txt || echo "")
+        SDLC_FILE=$(grep "_sdlc\.txt$" changed_files.txt || echo "")
+        
+        EMPTY=0
+        
+        # Only check files that exist
+        for file in $GB_FILE $DEVOPS_FILE $SDLC_FILE; do
+          if [ -n "$file" ] && [ -f "$file" ]; then
+            SIZE=$(wc -c < "$file")
+            if [ $SIZE -eq 0 ]; then
+              echo "❌ $file is empty"
+              EMPTY=$((EMPTY + 1))
+            else
+              echo "✅ $file has content ($SIZE bytes)"
+            fi
+          fi
+        done
+        
+        if [ $EMPTY -gt 0 ]; then
+          echo ""
+          echo "ERROR: All files must have content"
+          exit 1
+        fi
+    
+    - name: Check README update
+      run: |
+        echo "=== Checking README Update ==="
+        
+        README_UPDATED=$(grep -i "^README\.md$" changed_files.txt || echo "")
+        
+        if [ -z "$README_UPDATED" ]; then
+          echo "❌ README.md not updated in this PR"
+          echo ""
+          echo "ERROR: Assignment requires updating README.md with group details"
+          exit 1
+        else
+          echo "✅ README.md updated in this PR"
+        fi
+    
+    - name: Summary
+      run: |
+        echo ""
+        echo "======================================"
+        echo "       VALIDATION COMPLETE ✅"
+        echo "======================================"
+        echo "All required assignment files are present and valid!"
