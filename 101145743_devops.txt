@@ -1,0 +1,1 @@
+This course is designed to better prepare professionals entering the IT fiels. Students learn how DevOps improves efficiency, reduces deployment errors, and ebale faster delivery. This course also covers the procedure, protocols, and best practices that a DevOps engineer applies in a workplace environment to improve productivity. 
