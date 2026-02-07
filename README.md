@@ -14,7 +14,7 @@
 |------------|------|-----------------|-------------|
 | 101203923 | Saivarun Bandari | @saivarun-b97 | 101203923-Saivarun |
 | 101318862 | Brian Nguyen | @Faded999x | 101318862-Brian |
-| [Your ID] | [Your Name] | @[username] | [Your Branch] |
+| 101588253 | Bardya Partovi Nia | @Bardya-pa | 101588253-Bardya |
 | [Your ID] | [Your Name] | @[username] | [Your Branch] |
 | [Your ID] | [Your Name] | @[username] | [Your Branch] |
 | [Your ID] | [Your Name] | @[username] | [Your Branch] |
