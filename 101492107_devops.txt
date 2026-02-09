@@ -1,0 +1,5 @@
+DevOps Course
+
+DevOps is a modern approach that combines software development and IT operations 
+to improve teamwork and efficiency. Its main goal is to help organizations
+deliver software faster while maintaining high quality and reliability.
