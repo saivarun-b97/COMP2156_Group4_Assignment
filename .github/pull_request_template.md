@@ -1,13 +1,13 @@
 ## Description
-[Describe your changes]
+[Updated Branch with new info]
 
 ## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
+- [x] Bug fix
+- [x] New feature
+- [x] Documentation update
 
 ## Checklist
-- [ ] My code follows the project guidelines
-- [ ] I have made at least 10 commits
-- [ ] All three required files are created
-- [ ] I have updated the README
+- [x] My code follows the project guidelines
+- [x] I have made at least 10 commits
+- [x] All three required files are created
+- [x] I have updated the README
