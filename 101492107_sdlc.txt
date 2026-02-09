@@ -7,9 +7,10 @@ such as planning, development, testing, and deployment.
 
 DevOps enhances the SDLC by encouraging better communication 
 between development and operations teams. With continuous integration and automated testing,
- problems can be identified earlier, making the development process faster and more reliable.
+problems can be identified earlier, making the development process faster, better and more reliable.
 
 Using DevOps within the SDLC allows organizations to deliver higher-quality software 
 while adapting quickly to changes.
- For students, understanding this approach is important 
+For students, understanding this approach is important 
 because it reflects how modern technology teams build and maintain applications.
+
