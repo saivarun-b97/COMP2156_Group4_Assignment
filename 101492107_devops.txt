@@ -3,3 +3,7 @@ DevOps Course
 DevOps is a modern approach that combines software development and IT operations 
 to improve teamwork and efficiency. Its main goal is to help organizations
 deliver software faster while maintaining high quality and reliability.
+
+One of the biggest benefits of DevOps is automation. 
+By automating testing and deployment, teams can reduce human errors and save time.
+This allows companies to release updates more frequently and respond quickly to user needs.
