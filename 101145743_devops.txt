@@ -1,0 +1,15 @@
+DETAIL ABOUT DevOps Course
+_____________________________________________________________
+_____________________________________________________________
+
+- This course is designed to better prepare professionals entering the IT fiels. 
+- Students learn how DevOps improves efficiency, reduces deployment errors, and ebale faster delivery. 
+- This course also covers the procedure, protocols, and best practices that a DevOps engineer applies in a workplace environment to improve productivity. 
+
+
+COURSE OUTCOME
+_____________________________________________________________
+_____________________________________________________________
+
+- Students will ne able to understand and choose suitable cloud services, and deployment methods for software applications.
+- They will be able to Improve the software development lifecycle through teamwork, automation, and continuous integration. 
