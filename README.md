@@ -10,7 +10,6 @@
 
 ## 👥 Group Members
 
-
 |Student ID|Name|GitHub Username|Branch Name|
 |----------|----|---------------|-----------|
 |101203923|Saivarun Bandari|@saivarun-b97|101203923-Saivarun|
@@ -18,7 +17,7 @@
 |101592021|Christine Cawston|@ChristineC3|101592021-ChristineCawston|
 |101492107|Asal Davoudi|@asaldavodi1328-ship-it|101492107-asal|
 | 101145743|Harsimran Kaur|@Simran-8|101145743-Harsimran|
-|[Your ID]|[Your Name]|@[username]|[Your Branch]|
+| 101588253|Bardya Partovi Nia|@Bardya-pa|101588253-Bardya|
 
 
 ## 📋 Project Description

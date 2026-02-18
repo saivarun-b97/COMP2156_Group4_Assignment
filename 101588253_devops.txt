@@ -1,0 +1,5 @@
+The COMP 2156 DevOps course introduces students to the core principles and practices of DevOps, which focuses on collaboration between development and operations teams. In this course, students learn about version control systems such as Git, continuous integration and continuous deployment (CI/CD), automation, cloud technologies, and monitoring tools. 
+
+The course emphasizes practical skills through hands-on labs and projects, helping students understand how modern software systems are built, tested, and deployed efficiently. COMP 2156 prepares students to work in real-world DevOps environments by teaching both technical tools and teamwork-focused workflows.
+
+Overall, the COMP 2156 DevOps course equips students with both technical and professional skills required in today’s software industry. By learning DevOps principles, tools, and workflows, students develop a strong understanding of how software is delivered from development to production. 
